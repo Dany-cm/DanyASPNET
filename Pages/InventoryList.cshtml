@@ -1,0 +1,84 @@
+﻿@page
+@model DanyTGC.Pages.InventoryListModel
+@{
+}
+
+<table class="table mt-5">
+    <thead>
+    <tr>
+        <th scope="col">Edition</th>
+        <th scope="col">Name</th>
+        <th scope="col">Rarity</th>
+        <th scope="col">Stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var inventory in Model.InventoryList)
+    {
+        <tr>
+            <td>@inventory.Edition</td>
+            <td>@inventory.Name</td>
+            <td>@inventory.Rarity</td>
+            <td>@inventory.Stock</td>
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@inventory.Id">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="NewInventory.Edition" class="control-label floating-label">Edition</label>
+                <input asp-for="NewInventory.Edition" class="form-control"/>
+                <span asp-validation-for="NewInventory.Edition" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="NewInventory.Name" class="control-label floating-label">Name</label>
+                <input asp-for="NewInventory.Name" class="form-control"/>
+                <span asp-validation-for="NewInventory.Name" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="NewInventory.Rarity" class="control-label">Rarity</label>
+                <select asp-for="NewInventory.Rarity" class="form-control">
+                    <option value="C">Common</option>
+                    <option value="UC">Uncommon</option>
+                    <option value="R">Rare</option>
+                    <option value="L">Leader</option>
+                    <option value="SR">Super Rare</option>
+                    <option value="SEC">Secret Rare</option>
+                    <option value="AA">Alternate Art</option>
+                    <option value="DON">DON</option>
+                </select>
+                <span asp-validation-for="NewInventory.Rarity" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="NewInventory.Stock" class="control-label floating-label">Stock</label>
+                <input asp-for="NewInventory.Stock" class="form-control"/>
+                <span asp-validation-for="NewInventory.Stock" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary mt-3"/>
+    </div>
+</form>
