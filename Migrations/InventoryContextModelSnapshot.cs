@@ -32,8 +32,8 @@ namespace DanyTGC.Migrations
                     b.Property<string>("Rarity")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Stock")
-                        .HasColumnType("TEXT");
+                    b.Property<uint>("Stock")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

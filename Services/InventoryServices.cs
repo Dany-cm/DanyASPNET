@@ -7,11 +7,11 @@ namespace DanyTGC.Services
     {
         private readonly InventoryContext _context;
 
-        public InventoryService(InventoryContext context) 
+        public InventoryService(InventoryContext context)
         {
             _context = context;
         }
-        
+
         public IList<Inventory> GetInventories()
         {
             return _context.Inventories != null ? _context.Inventories.ToList() : new List<Inventory>();
@@ -34,6 +34,16 @@ namespace DanyTGC.Services
                 _context.Inventories?.Remove(inventory);
                 _context.SaveChanges();
             }
-        } 
+        }
+
+        public void EditInventory(int id)
+        {
+            var inventory = _context.Inventories?.Find(id);
+            if (inventory != null)
+            {
+                _context.Inventories?.Update(inventory);
+                _context.SaveChanges();
+            }
+        }
     }
 }
