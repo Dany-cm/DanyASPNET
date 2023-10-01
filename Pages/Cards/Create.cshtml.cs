@@ -61,6 +61,7 @@ public class CreateModel : PageModel
             Name = Form.CardName,
             Edition = edition,
             Rarity = rarity,
+            CardNumber = Form.CardNumber,
         };
 
         try

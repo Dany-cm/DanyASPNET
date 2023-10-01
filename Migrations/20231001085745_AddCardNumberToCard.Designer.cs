@@ -2,6 +2,7 @@
 using DanyTCG.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DanyTCG.Migrations
 {
     [DbContext(typeof(TcgContext))]
-    partial class InventoryContextModelSnapshot : ModelSnapshot
+    [Migration("20231001085745_AddCardNumberToCard")]
+    partial class AddCardNumberToCard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

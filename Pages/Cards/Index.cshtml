@@ -1,22 +1,26 @@
 ﻿@page
-@model DanyTCG.Pages.Cards.IndexModel
+@model IndexModel
 
 <h1>Cards</h1>
 <a asp-page="Create">Create Card</a>
 <table class="table">
     <thead>
     <tr>
+        <th>Card Number</th>
         <th>Name</th>
         <th>Edition</th>
         <th>Rarity</th>
     </tr>
     </thead>
+    <tbody>
     @foreach (var card in Model.Cards)
     {
         <tr>
+            <td>@card.CardNumber.ToString("000")</td>
             <td>@card.Name</td>
             <td>@card.Edition.Name</td>
             <td>@card.Rarity.Name</td>
         </tr>
     }
+    </tbody>
 </table>

@@ -9,6 +9,9 @@ public class Card : ICanValidate
     public int Id { get; set; }
 
     [Required]
+    public int CardNumber { get; set; }
+
+    [Required]
     [ForeignKey(nameof(Edition))]
     public int EditionId { get; set; }
     public virtual Edition Edition { get; set; }
