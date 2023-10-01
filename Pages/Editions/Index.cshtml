@@ -1,22 +1,35 @@
 ﻿@page
 @model DanyTCG.Pages.Editions.Index
+@{
+    ViewData["Title"] = "Editions";
+}
 
-<h1>Editions</h1>
-<a asp-page="Create">Create Edition</a>
-<table class="table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Cards</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    @foreach (var edition in Model.Editions)
-    {
-        <tr>
-            <td>@edition.Name</td>
-            <td>@edition.Cards.Count card(s)</td>
-            <td><a asp-page="Delete" asp-route-editionId="@edition.EditionId">Delete Edition</a></td>
-        </tr>
-    }
-</table>
+<div class="container mt-5">
+    <h1>Editions</h1>
+    <div class="mb-3">
+        <a asp-page="Create" class="btn btn-primary">Create Edition</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Cards</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var edition in Model.Editions)
+            {
+                <tr>
+                    <td>@edition.Name</td>
+                    <td>@edition.Cards.Count card(s)</td>
+                    <td>
+                        <a asp-page="Delete" asp-route-editionId="@edition.EditionId" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

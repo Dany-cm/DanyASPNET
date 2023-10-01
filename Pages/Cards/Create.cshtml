@@ -1,5 +1,9 @@
 ﻿@page
 @model CreateModel
+@{
+    ViewData["Title"] = "Create Card";
+}
+
 <h1>Create Card</h1>
 @if (!ModelState.IsValid)
 {
@@ -13,26 +17,28 @@
         </ul>
     </div>
 }
-<form method="post">
-    <label asp-for="Form.EditionId">Edition:</label>
-    <select
-        asp-for="Form.EditionId"
-        asp-items="Model.EditionsDropdown">
-        <option>--- Select Edition ---</option>
-    </select>
-    <br/>
-    <label asp-for="Form.RarityId">Rarity:</label>
-    <select
-        asp-for="Form.RarityId"
-        asp-items="Model.RaritiesDropdown">
-        <option>--- Select Rarity ---</option>
-    </select>
-    <br/>
-    <label asp-for="Form.CardName">Name:</label>
-    <input asp-for="Form.CardName"/>
-    <br/>
-    <label asp-for="Form.CardNumber">Card Number:</label>
-    <input asp-for="Form.CardNumber"/>
-    <br/>
-    <input type="submit"/>
+<form method="post" class="container mt-5">
+    <div class="mb-3">
+        <label asp-for="Form.EditionId" class="form-label">Edition:</label>
+        <select asp-for="Form.EditionId" asp-items="Model.EditionsDropdown" class="form-select">
+            <option>--- Select Edition ---</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Form.CardName" class="form-label">Name:</label>
+        <input asp-for="Form.CardName" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Form.CardNumber" class="form-label">Card Number:</label>
+        <input asp-for="Form.CardNumber" class="form-control" value="0"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Form.RarityId" class="form-label">Rarity:</label>
+        <select asp-for="Form.RarityId" asp-items="Model.RaritiesDropdown" class="form-select">
+            <option>--- Select Rarity ---</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="btn btn-primary" value="Submit Query"/>
+    </div>
 </form>
