@@ -1,5 +1,6 @@
 using DanyTCG.Models;
 using DanyTCG.Schemas;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DanyTCG.Pages.Cards
@@ -15,9 +16,10 @@ namespace DanyTCG.Pages.Cards
 
         public IList<Card> Cards { get; private set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Cards = _cardSchema.GetCards();
+            Cards = _cardSchema.List();
+            return Page();
         }
     }
 }

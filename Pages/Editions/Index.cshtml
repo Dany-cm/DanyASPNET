@@ -1,0 +1,22 @@
+﻿@page
+@model DanyTCG.Pages.Editions.Index
+
+<h1>Editions</h1>
+<a asp-page="Create">Create Edition</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Cards</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    @foreach (var edition in Model.Editions)
+    {
+        <tr>
+            <td>@edition.Name</td>
+            <td>@edition.Cards.Count card(s)</td>
+            <td><a asp-page="Delete" asp-route-editionId="@edition.EditionId">Delete Edition</a></td>
+        </tr>
+    }
+</table>

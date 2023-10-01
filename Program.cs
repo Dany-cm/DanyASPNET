@@ -8,7 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TcgContext>(options =>
     options.UseSqlite("Data Source=DanyTCG.db"));
-builder.Services.AddScoped<CardSchema>();
+
+// Register schemas
+builder
+    .Services
+    .AddScoped<CardSchema>()
+    .AddScoped<EditionSchema>()
+    .AddScoped<RaritySchema>();
 
 var app = builder.Build();
 

@@ -1,0 +1,44 @@
+﻿@page "{EditionId:int}"
+@model DanyTCG.Pages.Editions.Delete
+
+<h1>Delete Edition</h1>
+
+<p>Are you sure you wish to delete the following edition?</p>
+
+<h2>Edition</h2>
+<table class="table">
+    <tbody>
+    <tr>
+        <td>@Model.Edition.EditionId</td>
+        <td>@Model.Edition.Name</td>
+    </tr>
+    </tbody>
+</table>
+
+@if (Model.Edition.Cards.Count > 0)
+{
+    <p style="color:red;">The following cards will also be erased.</p>
+    <h2>Cards</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Rarity</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var card in Model.Edition.Cards)
+        {
+            <tr>
+                <td>@card.Name</td>
+                <td>@card.Rarity.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<hr/>
+<form method="post">
+    <input type="submit" value="Delete"/>
+</form>

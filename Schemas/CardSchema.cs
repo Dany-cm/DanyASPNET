@@ -1,4 +1,5 @@
 ﻿using DanyTCG.Data;
+using DanyTCG.Exceptions;
 using DanyTCG.Models;
 
 namespace DanyTCG.Schemas;
@@ -12,7 +13,7 @@ public class CardSchema
         _context = context;
     }
 
-    public IList<Card> GetCards(int start = 0, int take = 25)
+    public IList<Card> List(int start = 0, int take = 25)
     {
         return _context
             .Cards
@@ -22,13 +23,18 @@ public class CardSchema
             .ToList();
     }
 
-    public void StoreCard(Card card)
+    public void Create(Card card)
     {
+        if (!card.Validate())
+        {
+            throw new InvalidSchemaException("Model validation failed.");
+        }
+        
         _context.Cards.Add(card);
         _context.SaveChanges();
     }
 
-    public void DeleteCard(int cardId)
+    public void Delete(int cardId)
     {
         var card = _context.Cards.Find(cardId);
         if (card == null)
@@ -40,7 +46,7 @@ public class CardSchema
         _context.SaveChanges();
     }
 
-    public void SaveCard(Card card)
+    public void Update(Card card)
     {
         _context.Cards.Update(card);
         _context.SaveChanges();

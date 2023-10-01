@@ -1,0 +1,22 @@
+﻿@page
+@model DanyTCG.Pages.Rarities.Create
+
+<h1>Create Rarity</h1>
+@if (!ModelState.IsValid)
+{
+    <div class="text-danger">
+        <p>There are some errors:</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+<form method="post">
+    <label for="Rarity">Name:</label>
+    <input asp-for="Form.RarityName" />
+
+    <input type="submit" />
+</form>

@@ -1,0 +1,23 @@
+﻿@page
+@model DanyTCG.Pages.Rarities.Index
+
+<h1>Rarities</h1>
+<a asp-page="Create">Create Rarity</a>
+<hr/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var rarity in Model.Rarities)
+    {
+        <tr>
+            <td>@rarity.Name</td>
+            <td>TODO delete rarity</td>
+        </tr>
+    }
+    </tbody>
+</table>

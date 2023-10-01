@@ -3,9 +3,20 @@
 
 <h1>Cards</h1>
 <a asp-page="Create">Create Card</a>
-<ul>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Edition</th>
+        <th>Rarity</th>
+    </tr>
+    </thead>
     @foreach (var card in Model.Cards)
     {
-        <li>@card.Name</li>
+        <tr>
+            <td>@card.Name</td>
+            <td>@card.Edition.Name</td>
+            <td>@card.Rarity.Name</td>
+        </tr>
     }
-</ul>
+</table>

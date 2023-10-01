@@ -1,0 +1,21 @@
+﻿@page
+@model DanyTCG.Pages.Editions.Create
+<h1>Create Edition</h1>
+@if (!ModelState.IsValid)
+{
+    <div class="text-danger">
+        <p>There are some errors:</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+<form method="post">
+    <label for="Edition">Name:</label>
+    <input asp-for="Form.Edition" />
+
+    <input type="submit" />
+</form>

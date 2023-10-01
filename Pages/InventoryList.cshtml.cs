@@ -19,7 +19,7 @@ namespace DanyTCG.Pages
 
         public void OnGet()
         {
-            InventoryList = _service.GetCards();
+            InventoryList = _service.List();
         }
         public IActionResult OnPost()
         {
@@ -28,13 +28,13 @@ namespace DanyTCG.Pages
                 return Page();
             }
 
-            _service.StoreCard(NewInventory);
+            _service.Create(NewInventory);
 
             return RedirectToAction("Get");
         }
         public IActionResult OnPostDelete(int id)
         {
-            _service.DeleteCard(id);
+            _service.Delete(id);
 
             return RedirectToAction("Get");
         }

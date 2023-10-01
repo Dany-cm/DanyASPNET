@@ -1,13 +1,35 @@
 ﻿@page
-@model DanyTCG.Pages.Cards.CreateModel
+@model CreateModel
 <h1>Create Card</h1>
+@if (!ModelState.IsValid)
+{
+    <div class="text-danger">
+        <p>There are some errors:</p>
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
 <form method="post">
-    <label for="EditionId">Edition:</label>
+    <label asp-for="Form.EditionId">Edition:</label>
     <select
-        asp-for="EditionId"
+        asp-for="Form.EditionId"
         asp-items="Model.EditionsDropdown">
-        <option>--- Select an Edition ---</option>
+        <option>--- Select Edition ---</option>
     </select>
-
-    <input type="submit" />
+    <br/>
+    <label asp-for="Form.RarityId">Rarity:</label>
+    <select
+        asp-for="Form.RarityId"
+        asp-items="Model.RaritiesDropdown">
+        <option>--- Select Rarity ---</option>
+    </select>
+    <br/>
+    <label asp-for="Form.CardName">Name:</label>
+    <input asp-for="Form.CardName"/>
+    <br/>
+    <input type="submit"/>
 </form>
