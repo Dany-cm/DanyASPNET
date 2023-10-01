@@ -2,6 +2,7 @@
 using DanyTCG.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,14 +10,31 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DanyTCG.Migrations
 {
     [DbContext(typeof(TcgContext))]
-    partial class InventoryContextModelSnapshot : ModelSnapshot
+    [Migration("20230923085716_CreateRarityAndEditionTables")]
+    partial class CreateRarityAndEditionTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.11");
 
-            modelBuilder.Entity("DanyTCG.Models.Card", b =>
+            modelBuilder.Entity("DanyTCG.Models.Edition", b =>
+                {
+                    b.Property<int>("EditionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EditionId");
+
+                    b.ToTable("Editions");
+                });
+
+            modelBuilder.Entity("DanyTCG.Models.Inventory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,28 +50,16 @@ namespace DanyTCG.Migrations
                     b.Property<int>("RarityId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Stock")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EditionId");
 
                     b.HasIndex("RarityId");
 
-                    b.ToTable("Cards");
-                });
-
-            modelBuilder.Entity("DanyTCG.Models.Edition", b =>
-                {
-                    b.Property<int>("EditionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("EditionId");
-
-                    b.ToTable("Editions");
+                    b.ToTable("Inventories");
                 });
 
             modelBuilder.Entity("DanyTCG.Models.Rarity", b =>
@@ -71,7 +77,7 @@ namespace DanyTCG.Migrations
                     b.ToTable("Rarities");
                 });
 
-            modelBuilder.Entity("DanyTCG.Models.Card", b =>
+            modelBuilder.Entity("DanyTCG.Models.Inventory", b =>
                 {
                     b.HasOne("DanyTCG.Models.Edition", "Edition")
                         .WithMany()

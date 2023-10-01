@@ -1,14 +1,14 @@
-using DanyTGC.Data;
-using DanyTGC.Services;
+using DanyTCG.Data;
+using DanyTCG.Schemas;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<InventoryContext>(options =>
-    options.UseSqlite("Data Source=DanyTGC.db"));
-builder.Services.AddScoped<InventoryService>();
+builder.Services.AddDbContext<TcgContext>(options =>
+    options.UseSqlite("Data Source=DanyTCG.db"));
+builder.Services.AddScoped<CardSchema>();
 
 var app = builder.Build();
 

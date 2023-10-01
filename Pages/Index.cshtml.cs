@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DanyTGC.Pages;
+namespace DanyTCG.Pages;
 
 public class IndexModel : PageModel
 {

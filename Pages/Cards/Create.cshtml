@@ -1,0 +1,13 @@
+﻿@page
+@model DanyTCG.Pages.Cards.CreateModel
+<h1>Create Card</h1>
+<form method="post">
+    <label for="EditionId">Edition:</label>
+    <select
+        asp-for="EditionId"
+        asp-items="Model.EditionsDropdown">
+        <option>--- Select an Edition ---</option>
+    </select>
+
+    <input type="submit" />
+</form>

@@ -1,5 +1,5 @@
 ﻿@page
-@model DanyTGC.Pages.InventoryListModel
+@model DanyTCG.Pages.InventoryListModel
 @{
     ViewData["Title"] = "Inventory";
 }
@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="NewInventory.Name" class="control-label floating-label">Name</label>
-                    <input asp-for="NewInventory.Name" class="form-control"/>
+                    <input asp-for="NewInventory.Name" class="form-control" />
                     <span asp-validation-for="NewInventory.Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -36,46 +36,48 @@
                     </select>
                     <span asp-validation-for="NewInventory.Rarity" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                @* TODO: Update this *@
+                @* <div class="form-group">
                     <label asp-for="NewInventory.Stock" class="control-label floating-label">Stock</label>
-                    <input asp-for="NewInventory.Stock" class="form-control" min="0"/>
+                    <input asp-for="NewInventory.Stock" class="form-control" min="0" />
                     <span asp-validation-for="NewInventory.Stock" class="text-danger"></span>
-                </div>
+                </div> *@
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary mt-3"/>
+                    <input type="submit" value="Create" class="btn btn-primary mt-3" />
                 </div>
             </form>
         </div>
         <div class="col-md-6 mx-auto text-center">
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Edition</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Rarity</th>
-                    <th scope="col">Stock</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Edition</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Rarity</th>
+                        <th scope="col">Stock</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach (var inventory in Model.InventoryList)
-                {
-                    <tr>
-                        <td>@inventory.Edition</td>
-                        <td>@inventory.Name</td>
-                        <td>@inventory.Rarity</td>
-                        <td>@inventory.Stock</td>
-                        <td>
-                            <div class="btn-group gap-1">
-                                <form method="post" asp-page-handler="Delete" asp-route-id="@inventory.Id">
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
-                                <form method="post" asp-page-handler="Update" asp-route-id="@inventory.Id">
-                                    <button class="btn btn-primary">Edit</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                }
+                    @foreach (var inventory in Model.InventoryList)
+                    {
+                        <tr>
+                            <td>@inventory.Edition</td>
+                            <td>@inventory.Name</td>
+                            <td>@inventory.Rarity</td>
+                            @* TODO update this *@
+                            @* <td>@inventory.Stock</td> *@
+                            <td>
+                                <div class="btn-group gap-1">
+                                    <form method="post" asp-page-handler="Delete" asp-route-id="@inventory.Id">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <form method="post" asp-page-handler="Update" asp-route-id="@inventory.Id">
+                                        <button class="btn btn-primary">Edit</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

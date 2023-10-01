@@ -1,0 +1,11 @@
+﻿@page
+@model DanyTCG.Pages.Cards.IndexModel
+
+<h1>Cards</h1>
+<a asp-page="Create">Create Card</a>
+<ul>
+    @foreach (var card in Model.Cards)
+    {
+        <li>@card.Name</li>
+    }
+</ul>

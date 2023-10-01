@@ -1,26 +1,25 @@
-using DanyTGC.Services;
-using DanyTGC.Models;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using DanyTCG.Schemas;
+using DanyTCG.Models;
 
-namespace DanyTGC.Pages
+namespace DanyTCG.Pages
 {
     public class InventoryListModel : PageModel
     {
-        private readonly InventoryService _service;
+        private readonly CardSchema _service;
         [BindProperty]
-        public Inventory NewInventory { get; set; } = default!;
-        public IList<Inventory> InventoryList { get;set; } = default!;
+        public Card NewInventory { get; set; } = default!;
+        public IList<Card> InventoryList { get; set; } = default!;
 
-        public InventoryListModel(InventoryService service)
+        public InventoryListModel(CardSchema service)
         {
             _service = service;
         }
 
         public void OnGet()
         {
-            InventoryList = _service.GetInventories();
+            InventoryList = _service.GetCards();
         }
         public IActionResult OnPost()
         {
@@ -29,13 +28,13 @@ namespace DanyTGC.Pages
                 return Page();
             }
 
-            _service.AddInventory(NewInventory);
+            _service.StoreCard(NewInventory);
 
             return RedirectToAction("Get");
         }
         public IActionResult OnPostDelete(int id)
         {
-            _service.DeleteInventory(id);
+            _service.DeleteCard(id);
 
             return RedirectToAction("Get");
         }

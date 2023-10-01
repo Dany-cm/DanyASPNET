@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace DanyTGC.Migrations
+namespace DanyTCG.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
