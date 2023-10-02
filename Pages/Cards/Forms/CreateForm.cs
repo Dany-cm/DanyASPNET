@@ -8,4 +8,5 @@ public class CreateForm
     [Required] public int RarityId { get; set; }
     [Required] public string CardName { get; set; }
     [Required] public int CardNumber { get; set; }
+    [Required] public int CardCount { get; set; }
 }

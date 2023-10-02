@@ -41,14 +41,14 @@ public class CreateModel : PageModel
         {
             return Page();
         }
-        
+
         var edition = _editionSchema.Find(Form.EditionId);
         if (edition == null)
         {
             ModelState.AddModelError(nameof(Form.EditionId), "Edition is invalid.");
             return Page();
         }
-        
+
         var rarity = _raritySchema.Find(Form.RarityId);
         if (rarity == null)
         {
@@ -56,31 +56,34 @@ public class CreateModel : PageModel
             return Page();
         }
 
-        var card = new Card
+        for (var i = 0; i < Form.CardCount; ++i)
         {
-            Name = Form.CardName,
-            Edition = edition,
-            Rarity = rarity,
-            CardNumber = Form.CardNumber,
-        };
-
-        try
-        {
-            _cardSchema.Update(card);
-        }
-        catch (InvalidSchemaException ex)
-        {
-            foreach (var (key, error) in card.ModelErrors)
+            var card = new Card
             {
-                ModelState.AddModelError(key, error);
-            }
+                Name = Form.CardName,
+                Edition = edition,
+                Rarity = rarity,
+                CardNumber = Form.CardNumber,
+            };
 
-            if (ex.DisplayToUser)
+            try
             {
-                ModelState.AddModelError(ex.FieldName, ex.Message);
+                _cardSchema.Update(card);
             }
+            catch (InvalidSchemaException ex)
+            {
+                foreach (var (key, error) in card.ModelErrors)
+                {
+                    ModelState.AddModelError(key, error);
+                }
 
-            return Page();
+                if (ex.DisplayToUser)
+                {
+                    ModelState.AddModelError(ex.FieldName, ex.Message);
+                }
+
+                return Page();
+            }
         }
 
         return RedirectToPage("Index");
