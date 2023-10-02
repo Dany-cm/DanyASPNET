@@ -3,3 +3,5 @@
 *bin
 *obj/
 *.db
+/DanyTCG.db-shm
+/DanyTCG.db-wal
