@@ -3,5 +3,6 @@
 *bin
 *obj/
 *.db
+*.vscode/
 /DanyTCG.db-shm
 /DanyTCG.db-wal
